@@ -1,10 +1,14 @@
-// import { useState } from 'react'
-// import css from './App.module.css'
+// import ContactList from "../../components/ContactList/ContactList";
+// import SearchBox from "../../components/SearchBox/SearchBox";
+// import ContactForm from "../../components/ContactForm/ContacForm";
 
 const App = () => {
   return (
     <>
-      <h1>Hello!</h1>
+      <h1>Phonebook</h1>
+      {/* <ContactForm />
+      <SearchBox />
+      <ContactList /> */}
     </>
   );
 };
