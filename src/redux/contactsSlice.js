@@ -29,7 +29,7 @@ const contactsSlice = createSlice({
       .addCase(addContact.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items.push(action.payload);
       })
       .addCase(addContact.rejected, (state, action) => {
         state.loading = false;
@@ -38,10 +38,14 @@ const contactsSlice = createSlice({
       .addCase(deleteContact.pending, (state) => {
         state.loading = false;
       })
-      .addCase(deleteContact.rejected, (state, action) => {
+      .addCase(deleteContact.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items = state.items.filter((item) => item.id !== action.payload);
+      })
+      .addCase(deleteContact.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       }),
 });
 
@@ -51,7 +55,7 @@ export const selectFilterContacts = createSelector(
   [selectContacts, selectNameFilter],
   (contacts, filter) => {
     return contacts.filter((contact) =>
-      contact.name.toLowercase().includes(filter.toLowercase())
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   }
 );
