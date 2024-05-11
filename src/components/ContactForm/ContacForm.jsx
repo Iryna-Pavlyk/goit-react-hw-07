@@ -20,6 +20,7 @@ const SignupSchema = Yup.object().shape({
 
 const ContactForm = () => {
   const numberId = nanoid();
+  const nameId = nanoid();
 
   const values = {
     name: "",
@@ -31,7 +32,6 @@ const ContactForm = () => {
   const handleSubmit = (values, actions) => {
     dispatch(
       addContact({
-        id: values.id,
         name: values.name,
         number: values.number,
       })
@@ -48,12 +48,12 @@ const ContactForm = () => {
       >
         <Form className={css.form}>
           <div className={css.inputWrapper}>
-            <label htmlFor={values.id}>Name</label>
+            <label htmlFor={nameId}>Name</label>
             <Field
               className={css.input}
               type="text"
               name="name"
-              id={values.id}
+              id={nameId}
               placeholder="Rosie Simpson"
             ></Field>
             <ErrorMessage className={css.err} name="name" component="span" />
