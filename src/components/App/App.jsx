@@ -20,7 +20,7 @@ const App = () => {
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox />
-      {loading && <p>Loading...</p>}
+      {loading && !error && <p>Loading...</p>}
       {error && <p>Error!</p>}
       <ContactList />
     </>
